@@ -40,25 +40,26 @@ client.connect(err => {
   
   //adding a donation
   app.post("/addDonation", (req,res) => {
-    const file = req.files.file;
-    const name = req.body.name;
-    const description = req.body.description;
-    const location = req.body.location;
-    const categories = req.body.categories;
-    const delivery = req.body.delivery; 
-    const donorName = req.body.donorName; 
-    const donorEmail = req.body.donorEmail; 
-    const img = file.name;
+    // const file = req.files.file;
+    // const name = req.body.name;
+    // const description = req.body.description;
+    // const location = req.body.location;
+    // const categories = req.body.categories;
+    // const delivery = req.body.delivery; 
+    // const donorName = req.body.donorName; 
+    // const donorEmail = req.body.donorEmail; 
+    // const img = file.name;
     
-    const donation = {name, description, location, categories, delivery, img, donorName, donorEmail};
-    console.log(donation)
-    file.mv(`${__dirname}/images/${img}`, (err) =>{
-      if(err) {
-        console.log(err);
-        return res.status(500).send({msg: "failed to upload the image"})
-      }
-      return res.send({name: img, path: `/${img}`})
-    })
+    // const donation = {name, description, location, categories, delivery, img, donorName, donorEmail};
+    // console.log(donation)
+    // file.mv(`${__dirname}/images/${img}`, (err) =>{
+    //   if(err) {
+    //     console.log(err);
+    //     return res.status(500).send({msg: "failed to upload the image"})
+    //   }
+    //   return res.send({name: img, path: `/${img}`})
+    // })
+    const donation = req.body;
     donationsCollection.insertOne(donation)
     .then(result => {
       console.log(result);
@@ -113,25 +114,28 @@ client.connect(err => {
 
   //adding a seeking post
   app.post("/addSeek", (req,res) => {
-    const file = req.files.file;
-    const name = req.body.name;
-    const description = req.body.description;
-    const location = req.body.location;
-    const categories = req.body.categories;
-    const delivery = req.body.delivery; 
-    const seekerName = req.body.seekerName; 
-    const seekerEmail = req.body.seekerEmail; 
-    const img = file.name;
+    // const file = req.files.file;
+    // const name = req.body.name;
+    // const description = req.body.description;
+    // const location = req.body.location;
+    // const categories = req.body.categories;
+    // const delivery = req.body.delivery; 
+    // const seekerName = req.body.seekerName; 
+    // const seekerEmail = req.body.seekerEmail; 
+    // const img = req.body.imageURL;
+    // const created = req.body.created;
     
-    const seek = {name, description, location, categories, delivery, img, seekerName, seekerEmail};
+    // const seek = {name, description, location, categories, delivery, img, created, seekerName, seekerEmail};
+    // console.log(seek);
+    // file.mv(`${__dirname}/images/${img}`, (err) =>{
+    //   if(err) {
+    //     console.log(err);
+    //     return res.status(500).send({msg: "failed to upload the image"})
+    //   }
+    //   return res.send({name: img, path: `/${img}`})
+    // })
+    const seek = req.body;
     console.log(seek);
-    file.mv(`${__dirname}/images/${img}`, (err) =>{
-      if(err) {
-        console.log(err);
-        return res.status(500).send({msg: "failed to upload the image"})
-      }
-      return res.send({name: img, path: `/${img}`})
-    })
     seekingCollection.insertOne(seek)
     .then(result => {
       console.log(result);
