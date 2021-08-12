@@ -31,7 +31,7 @@ client.connect(err => {
     })
   });
 
-  //showing a single donation
+  //showing a single donation seriously 
   app.get("/donation/:id", (req,res) => {
     const id = ObjectID(req.params.id);
     donationsCollection.findOne({_id: id})
